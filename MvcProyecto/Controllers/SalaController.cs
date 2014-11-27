@@ -9,6 +9,7 @@ using MvcProyecto.Models;
 
 namespace MvcProyecto.Controllers
 {
+    [Authorize]
     public class SalaController : Controller
     {
         private Db db = new Db();
@@ -23,8 +24,35 @@ namespace MvcProyecto.Controllers
 
 
         //
-        // GET: /Sala/Create
+        // GET: /Sala/Prestamos
+        [Authorize]
+        public ActionResult Prestamos()
+        {
+            return View();
+        }
 
+        //
+        // POST: /Sala/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Prestamos(Sala sala)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Salas.Add(sala);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(sala);
+        }
+
+
+        //
+        // GET: /Sala/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -35,6 +63,7 @@ namespace MvcProyecto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Sala sala)
         {
             if (ModelState.IsValid)

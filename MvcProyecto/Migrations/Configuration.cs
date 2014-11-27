@@ -6,6 +6,8 @@ namespace MvcProyecto.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Web.Security;
+    using WebMatrix.WebData;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MvcProyecto.Models.Db>
     {
@@ -32,6 +34,30 @@ namespace MvcProyecto.Migrations
                    }
                }
             );
+            seedMemberShip();
+        }
+
+        private void seedMemberShip()
+        {
+            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider)Membership.Provider;
+
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
+            if (membership.GetUser("Administrador", false) == null)
+            {
+                membership.CreateUserAndAccount("Administrador","Unitecnologica2015");
+            }
+            if (!roles.GetRolesForUser("Administrador").Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new[] {"Administrador"}, new[] {"admin"});
+            }
+
+
 
         }
     }
