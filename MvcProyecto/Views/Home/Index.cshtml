@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MvcProyecto.Models.SalaListViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@*<form method="get">
+        <input type="search" name="search" />
+        <input type="submit" value="Search By Name">
+    </form>*@
+<h2>Listado de salas disponibles</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salon)
+            </td>
+
+        </tr>
+    }
+
+</table>
