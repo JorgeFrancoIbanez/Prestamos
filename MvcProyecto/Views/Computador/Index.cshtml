@@ -1,0 +1,15 @@
+﻿@model MvcProyecto.Models.Sala
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Computadores en la sala  @Model.Nombre</h2>
+@Html.Partial("_Computadores", @Model.Computadores)
+
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { SalaId = Model.Id})
+</p>
