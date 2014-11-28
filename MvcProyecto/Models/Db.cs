@@ -14,6 +14,8 @@ namespace MvcProyecto.Models
 
         }
         public DbSet<Sala> Salas { get; set; }
+        public DbSet<PrestamoSala> PrestamosSalas { get; set; }
+        public DbSet<PrestamoCompu> PrestamosComputadores { get; set; }
         public DbSet<Computador> Computadores{ get; set; }
     }
 }

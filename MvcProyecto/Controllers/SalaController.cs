@@ -9,50 +9,36 @@ using MvcProyecto.Models;
 
 namespace MvcProyecto.Controllers
 {
-    [Authorize]
+    
     public class SalaController : Controller
     {
-        private Db db = new Db();
+        private Db _db = new Db();
 
         //
         // GET: /Sala/
 
         public ActionResult Index()
         {
-            return View(db.Salas.ToList());
+            var model = from r in _db.Salas
+                        where r.Estado == "Disponible"
+                        select new SalaListViewModel
+                        {
+                            Id = r.Id,
+                            Nombre = r.Nombre,
+                            Aula = r.Aula,
+                            Salon = r.Salon,
+                            Estado =r.Estado,
+                            CountComputadores = r.Computadores.Count()
+                        };
+            return View(model);
         }
 
 
-        //
-        // GET: /Sala/Prestamos
-        [Authorize]
-        public ActionResult Prestamos()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Sala/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Prestamos(Sala sala)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Salas.Add(sala);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(sala);
-        }
 
 
         //
         // GET: /Sala/Create
-        [Authorize(Roles = "Admin")]
+//        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -63,13 +49,13 @@ namespace MvcProyecto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult Create(Sala sala)
         {
             if (ModelState.IsValid)
             {
-                db.Salas.Add(sala);
-                db.SaveChanges();
+                _db.Salas.Add(sala);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -81,7 +67,7 @@ namespace MvcProyecto.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Sala sala = db.Salas.Find(id);
+            Sala sala = _db.Salas.Find(id);
             if (sala == null)
             {
                 return HttpNotFound();
@@ -98,8 +84,8 @@ namespace MvcProyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sala).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(sala).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(sala);
@@ -110,7 +96,7 @@ namespace MvcProyecto.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Sala sala = db.Salas.Find(id);
+            Sala sala = _db.Salas.Find(id);
             if (sala == null)
             {
                 return HttpNotFound();
@@ -125,15 +111,15 @@ namespace MvcProyecto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Sala sala = db.Salas.Find(id);
-            db.Salas.Remove(sala);
-            db.SaveChanges();
+            Sala sala = _db.Salas.Find(id);
+            _db.Salas.Remove(sala);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

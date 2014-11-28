@@ -23,8 +23,9 @@ else
 <section id="externalLogins">
     @Html.Action("RemoveExternalLogins")
 
-    <h3>Agregar un inicio de sesión externo</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+    <h3> Ver mis Salas </h3>
+    @Html.ActionLink("Prestamos Sala","UserSalas","PrestaSala")
+
 </section>
 
 @section Scripts {

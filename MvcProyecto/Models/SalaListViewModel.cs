@@ -13,6 +13,8 @@ namespace MvcProyecto.Models
 
         public string Aula { get; set; }
 
+        public string Estado { get; set; }
+
         public int Salon { get; set; }
 
         public int CountComputadores { get; set; }

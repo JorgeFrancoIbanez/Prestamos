@@ -184,7 +184,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ComputadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrestaCompuController.cs" />
+    <Compile Include="Controllers\PrestaSalaController.cs" />
     <Compile Include="Controllers\SalaController.cs" />
+    <Compile Include="db.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,7 +206,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CompuListViewModel.cs" />
     <Compile Include="Models\Computador.cs" />
+    <Compile Include="Models\PrestamoCompu.cs" />
+    <Compile Include="Models\PrestamoSala.cs" />
+    <Compile Include="Models\PrestamoSalaListViewModel.cs" />
     <Compile Include="Models\SalaListViewModel.cs" />
     <Compile Include="Models\Db.cs" />
     <Compile Include="Models\Sala.cs" />
@@ -329,6 +336,23 @@
     <Content Include="Views\Computador\Create.cshtml" />
     <Content Include="Views\Computador\Edit.cshtml" />
     <Content Include="Views\Computador\Delete.cshtml" />
+    <Content Include="Views\Sala\Prestamos.cshtml" />
+    <Content Include="Views\PrestaSala\Index.cshtml" />
+    <Content Include="Views\PrestaSala\Details.cshtml" />
+    <Content Include="Views\PrestaSala\Create.cshtml" />
+    <Content Include="Views\PrestaSala\Edit.cshtml" />
+    <Content Include="Views\PrestaSala\Delete.cshtml" />
+    <Content Include="Views\PrestaSala\UserSalas.cshtml" />
+    <Content Include="Views\PrestamoSalaListViewModel\Index.cshtml" />
+    <Content Include="Views\PrestamoSalaListViewModel\Details.cshtml" />
+    <Content Include="Views\PrestamoSalaListViewModel\Create.cshtml" />
+    <Content Include="Views\PrestamoSalaListViewModel\Edit.cshtml" />
+    <Content Include="Views\PrestamoSalaListViewModel\Delete.cshtml" />
+    <Content Include="Views\PrestaCompu\Index.cshtml" />
+    <Content Include="Views\PrestaCompu\Details.cshtml" />
+    <Content Include="Views\PrestaCompu\Create.cshtml" />
+    <Content Include="Views\PrestaCompu\Edit.cshtml" />
+    <Content Include="Views\PrestaCompu\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

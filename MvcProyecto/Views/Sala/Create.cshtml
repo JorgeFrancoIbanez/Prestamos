@@ -36,6 +36,13 @@
             @Html.EditorFor(model => model.Salon)
             @Html.ValidationMessageFor(model => model.Salon)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Estado)
+            @Html.ValidationMessageFor(model => model.Estado)
+        </div>
 
         <p>
             <input type="submit" value="Create" />
